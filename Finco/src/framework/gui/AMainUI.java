@@ -85,11 +85,12 @@ public abstract class AMainUI implements IMainUI {
         jFrame.addWindowListener(getWindowListener());
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Vector<Object> getSelectedModel() {
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
         if (selection >=0)
-            return model.getDataVector().elementAt(selection);
+            return (Vector<Object>) model.getDataVector().elementAt(selection);
         return null;
     }
 

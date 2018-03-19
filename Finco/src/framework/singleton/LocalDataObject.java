@@ -3,8 +3,9 @@ package finco.framework.singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import finco.framework.account.Account;
-import finco.framework.party.ICustomer;
+
+import framework.account.Account;
+import framework.party.ICustomer;
 
 /**
 * @author Sumit Wankhede
