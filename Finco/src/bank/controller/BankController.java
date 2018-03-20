@@ -1,10 +1,10 @@
 package bank.controller;
 
-import javax.swing.*;
+import java.util.Vector;
+
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-import bank.account.Checkings;
-import bank.account.Savings;
 import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
@@ -12,14 +12,12 @@ import bank.gui.component.AddPersonalAccountDialog;
 import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
 import finco.framework.IFinCo;
-import finco.framework.account.Account;
-import finco.framework.command.*;
+import finco.framework.command.DepositEntry;
+import finco.framework.command.Transaction;
+import finco.framework.command.WithdrawEntry;
 import finco.framework.gui.DefaultController;
 import finco.framework.gui.IMainUI;
 import finco.framework.gui.component.TransactionDialog;
-import finco.framework.party.ICustomer;
-
-import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
