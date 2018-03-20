@@ -1,12 +1,12 @@
-package bank.gui;
+package bank.controller;
+
+import javax.swing.table.DefaultTableModel;
 
 import finco.framework.IFinCo;
 import finco.framework.command.Operation;
 import finco.framework.command.Transaction;
 import finco.framework.gui.DefaultController;
 import finco.framework.gui.IMainUI;
-
-import javax.swing.table.DefaultTableModel;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -50,4 +50,8 @@ public class BankController extends DefaultController {
             }
         });
     }
+    
+    protected void addPersonalAccount() {
+		
+	}
 }

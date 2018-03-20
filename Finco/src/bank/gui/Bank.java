@@ -1,11 +1,12 @@
 package bank.gui;
 
 
+import javax.swing.table.DefaultTableModel;
+
+import bank.controller.BankController;
 import finco.framework.FinCo;
 import finco.framework.IFinCo;
 import finco.framework.gui.IMainUI;
-
-import javax.swing.table.DefaultTableModel;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
