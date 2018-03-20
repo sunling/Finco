@@ -1,6 +1,6 @@
 package finco.framework.model;
 
-public class CustomerAccount {
+public class CustomerAccountDTO {
 
     private String accountType;
     private String accountNo;

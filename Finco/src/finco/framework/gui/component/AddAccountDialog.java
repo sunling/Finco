@@ -1,6 +1,6 @@
 package finco.framework.gui.component;
 
-import finco.framework.model.CustomerAccount;
+import finco.framework.model.CustomerAccountDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +10,10 @@ import java.awt.*;
  */
 public class AddAccountDialog extends JDialog {
 
-    private CustomerAccount account;
+    private CustomerAccountDTO account;
 
 
-    public AddAccountDialog(CustomerAccount account)
+    public AddAccountDialog(CustomerAccountDTO account)
     {
         super();
         this.account = account;

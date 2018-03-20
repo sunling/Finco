@@ -2,7 +2,7 @@ package finco.framework.command;
 
 import finco.framework.account.Account;
 import finco.framework.factory.CustomerFactory;
-import finco.framework.model.CustomerAccount;
+import finco.framework.model.CustomerAccountDTO;
 import finco.framework.party.ACustomer;
 import finco.framework.singleton.LocalDataObject;
 
@@ -14,11 +14,11 @@ import finco.framework.singleton.LocalDataObject;
 public class AddAccount implements Operation {
 	private LocalDataObject db = LocalDataObject.getInstance();
 
-	private CustomerAccount customerAccount;
+	private CustomerAccountDTO customerAccount;
 	protected ACustomer customer;
 	protected Account account;
 
-	public AddAccount(CustomerAccount customerAccount) {
+	public AddAccount(CustomerAccountDTO customerAccount) {
 	    this.customerAccount = customerAccount;
 	}
 	@Override
@@ -39,9 +39,8 @@ public class AddAccount implements Operation {
 	    customer.addAccount(account);
 
 		//add an account
-		db.getAllCustomer().add(customer);
-		//add a customer
-		db.getAllAccount().add(account);
+        db.addCustomer(customer);
+        db.addAccount(account);
 
 	}
 
