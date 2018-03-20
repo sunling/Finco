@@ -60,6 +60,14 @@ public class BankController extends DefaultController {
             finCo.doOperation(new AddPersonalAccount(dto));
         }
 
+        // add data to table
+        Object[] rowdata = new Object[4];
+        rowdata[0] = dto.getAccountNo();
+        rowdata[1] = dto.getCustomerName();
+        rowdata[2] = dto.getCity();
+        rowdata[3] = 0;
+        model.addRow(rowdata);
+
         System.out.println("Add personal account action performed");
 	}
 
@@ -73,6 +81,14 @@ public class BankController extends DefaultController {
         if (dto.isValid()) {
             finCo.doOperation(new AddCompanyAccount(dto));
         }
+
+        // add data to table
+        Object[] rowdata = new Object[4];
+        rowdata[0] = dto.getAccountNo();
+        rowdata[1] = dto.getCustomerName();
+        rowdata[2] = dto.getCity();
+        rowdata[3] = 0;
+        model.addRow(rowdata);
 
         System.out.println("Add company account action performed");
     }
