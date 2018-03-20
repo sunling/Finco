@@ -1,4 +1,4 @@
-package framework.gui;
+package finco.framework.gui;
 
 public class FinCo {
 

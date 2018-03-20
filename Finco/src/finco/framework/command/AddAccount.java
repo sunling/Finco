@@ -1,8 +1,8 @@
-package framework.command;
+package finco.framework.command;
 
-import framework.account.Account;
-import framework.party.ACustomer;
-import framework.singleton.LocalDataObject;
+import finco.framework.account.Account;
+import finco.framework.party.ACustomer;
+import finco.framework.singleton.LocalDataObject;
 
 /**
  * concrete command

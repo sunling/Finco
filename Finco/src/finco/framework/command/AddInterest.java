@@ -1,9 +1,9 @@
-package framework.command;
+package finco.framework.command;
 
 import java.util.List;
 
-import framework.account.Account;
-import framework.singleton.LocalDataObject;
+import finco.framework.account.Account;
+import finco.framework.singleton.LocalDataObject;
 
 /**
  * Concrete Command : Add interest to all of accounts in bank
