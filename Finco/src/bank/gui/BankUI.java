@@ -1,13 +1,15 @@
 package bank.gui;
 
 import finco.framework.gui.AMainUI;
-import finco.framework.gui.FinCo;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author: Enkhbayasgalan Galsandorj
+ */
 public class BankUI extends AMainUI {
-    public BankUI(FinCo finCo, DefaultTableModel tableModel) {
-        super(finCo, tableModel);
+    public BankUI(DefaultTableModel tableModel) {
+        super(tableModel);
     }
 
     @Override

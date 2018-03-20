@@ -1,30 +1,33 @@
 package bank.controller;
 
-import finco.framework.gui.Command;
-import finco.framework.gui.DefaultController;
-import finco.framework.gui.FinCo;
-import finco.framework.gui.IMainUI;
-
 import javax.swing.table.DefaultTableModel;
 
+import finco.framework.IFinCo;
+import finco.framework.command.Operation;
+import finco.framework.command.Transaction;
+import finco.framework.gui.DefaultController;
+import finco.framework.gui.IMainUI;
+
+/**
+ * @author: Enkhbayasgalan Galsandorj
+ */
 public class BankController extends DefaultController {
 
-	
-    public BankController(FinCo finCo, IMainUI ui, DefaultTableModel model) {
+    public BankController(IFinCo finCo, IMainUI ui, DefaultTableModel model) {
         super(finCo, ui, model);
     }
 
     @Override
     protected void initOperationalButtons() {
 
-        ui.addOperationalButton("Add Personal Account", new Command() {
+        ui.addOperationalButton("Add Personal Account", new Operation() {
             @Override
             public void execute() {
                 System.out.println("Add Personal Account");
             }
         });
 
-        ui.addOperationalButton("Add Company Account", new Command() {
+        ui.addOperationalButton("Add Company Account", new Operation() {
             @Override
             public void execute() {
                 System.out.println("Add Company Account");
@@ -34,13 +37,13 @@ public class BankController extends DefaultController {
     }
 
     protected void initTransactionalButtons() {
-        ui.configureCreditTransactionButton("Deposit", new Command() {
+        ui.configureCreditTransactionButton("Deposit", new Transaction() {
             @Override
             public void execute() {
                 System.out.println("Deposit");
             }
         });
-        ui.configureDebitTransactionButton("Withdraw", new Command() {
+        ui.configureDebitTransactionButton("Withdraw", new Transaction() {
             @Override
             public void execute() {
                 System.out.println("Withdraw");
