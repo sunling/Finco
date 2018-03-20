@@ -81,6 +81,7 @@ public abstract class AMainUI implements IMainUI {
         JButton_Exit.setPreferredSize(new Dimension(96, 31));
         JButton_Exit.setMaximumSize(new Dimension(96, 31));
         JButton_Exit.setMinimumSize(new Dimension(96, 31));
+        JButton_Exit.addActionListener(e->System.exit(0));
 
 
 

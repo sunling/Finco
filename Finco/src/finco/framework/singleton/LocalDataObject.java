@@ -16,7 +16,7 @@ public class LocalDataObject {
 	
 	Map<ICustomer, List<Account>> dataObject = new HashMap<>();
 	private static LocalDataObject localDataObject = null;
-	private ArrayList<CustomerLog> customerLogList;
+	private ArrayList<CustomerLog> customerLogList = new ArrayList<>();
 	
 	private LocalDataObject() {
 	}

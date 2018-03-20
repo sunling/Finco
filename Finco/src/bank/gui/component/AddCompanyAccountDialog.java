@@ -1,8 +1,6 @@
 package bank.gui.component;
 
 import bank.model.CompanyAccount;
-import bank.model.PersonalAccount;
-import finco.framework.model.CustomerAccount;
 
 import javax.swing.*;
 import java.awt.*;

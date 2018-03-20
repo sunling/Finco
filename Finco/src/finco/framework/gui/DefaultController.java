@@ -1,6 +1,7 @@
 package finco.framework.gui;
 
 import finco.framework.IFinCo;
+import finco.framework.account.Account;
 import finco.framework.command.AddAccount;
 import finco.framework.command.DepositEntry;
 import finco.framework.command.WithdrawEntry;
@@ -8,8 +9,9 @@ import finco.framework.factory.AccountFactory;
 import finco.framework.factory.CustomerFactory;
 import finco.framework.gui.component.AddAccountDialog;
 import finco.framework.gui.component.TransactionDialog;
-import finco.framework.model.CustomerAccount;
+import finco.framework.model.CustomerAccountDTO;
 import finco.framework.model.TransactionDTO;
+import finco.framework.singleton.LocalDataObject;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +56,7 @@ public class DefaultController {
     }
 
     private void addAccount() {
-        CustomerAccount dto = new CustomerAccount();
+        CustomerAccountDTO dto = new CustomerAccountDTO();
         AddAccountDialog dialog = new AddAccountDialog(dto);
         dialog.setBounds(450, 20, 300, 330);
         dialog.setVisible(true);
@@ -77,7 +79,7 @@ public class DefaultController {
         Vector<Object> selectedAccount = ui.getSelectedModel();
         if (selectedAccount != null) {
             TransactionDTO dto = new TransactionDTO();
-            dto.setAccountNumber((String) selectedAccount.get(0));
+            dto.setAccountNumber((String) selectedAccount.elementAt(0));
 
             // dialog
             TransactionDialog dialog = new TransactionDialog(dto);
@@ -89,6 +91,17 @@ public class DefaultController {
                 finCo.doTransaction(new DepositEntry(dto.getAccountNumber(), dto.getAmount()));
 
             // update list
+            for(Vector<Object> o: model.getDataVector()) {
+                if (dto.getAccountNumber().equals((String)o.elementAt(0))) {
+                    LocalDataObject db = LocalDataObject.getInstance();
+                    for(Account a: db.getAllAccount())
+                        if (a.getAccountNo().equals(dto.getAccountNumber())) {
+                            o.set(3, a.getBalance());
+                            break;
+                        }
+                    break;
+                }
+            }
         }
 
         System.out.println("Deposit action performed in default controller");
@@ -109,7 +122,19 @@ public class DefaultController {
             if (dto.getAmount() != null)
                 finCo.doTransaction(new WithdrawEntry(dto.getAccountNumber(), dto.getAmount()));
 
+
             // update list
+            for(Vector<Object> o: model.getDataVector()) {
+                if (dto.getAccountNumber().equals((String)o.elementAt(0))) {
+                    LocalDataObject db = LocalDataObject.getInstance();
+                    for(Account a: db.getAllAccount())
+                        if (a.getAccountNo().equals(dto.getAccountNumber())) {
+                            o.set(3, a.getBalance());
+                            break;
+                        }
+                    break;
+                }
+            }
         }
 
         System.out.println("Withdraw action performed in default controller");

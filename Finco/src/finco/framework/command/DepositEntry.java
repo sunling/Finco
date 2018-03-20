@@ -28,7 +28,7 @@ public class DepositEntry implements Transaction {
 				//1.update balance
 				Calendar calender = Calendar.getInstance();
 		        Date date = calender.getTime();
-				account.setAmount(account.getBalance()+amount);
+//				account.setAmount(account.getBalance()+amount);//???
 				
 				//2. add entry
 				Entry entry = new Entry(amount, date, "DEPOSIT");

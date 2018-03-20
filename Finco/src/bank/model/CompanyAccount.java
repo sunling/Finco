@@ -1,8 +1,8 @@
 package bank.model;
 
-import finco.framework.model.CustomerAccount;
+import finco.framework.model.CustomerAccountDTO;
 
-public class CompanyAccount extends CustomerAccount {
+public class CompanyAccount extends CustomerAccountDTO {
     private String numOfEmployee;
 
     public String getNumOfEmployee() {
