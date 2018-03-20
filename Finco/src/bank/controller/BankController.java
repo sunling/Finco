@@ -57,6 +57,16 @@ public class BankController extends DefaultController {
         if (dto.isValid()) {
             finCo.doOperation(new AddPersonalAccount(dto));
         }
+
+        // add data to table
+        Object[] rowdata = new Object[4];
+        rowdata[0] = dto.getAccountNo();
+        rowdata[1] = dto.getCustomerName();
+        rowdata[2] = dto.getCity();
+        rowdata[3] = 0;
+        model.addRow(rowdata);
+
+        System.out.println("Add personal account action performed");
 	}
 
 	private void addCompanyAccount() {
@@ -69,33 +79,15 @@ public class BankController extends DefaultController {
         if (dto.isValid()) {
             finCo.doOperation(new AddCompanyAccount(dto));
         }
-    }
 
-    private void deposit() {
-        // dialog
-        Vector<Object> selectedAccount = ui.getSelectedModel();
-        String accountNo = (String) selectedAccount.get(0);
-        TransactionDialog dialog = new TransactionDialog(accountNo);
-        dialog.setTitle("Deposit");
-        dialog.setBounds(430, 15, 275, 140);
-        dialog.setVisible(true);
+        // add data to table
+        Object[] rowdata = new Object[4];
+        rowdata[0] = dto.getAccountNo();
+        rowdata[1] = dto.getCustomerName();
+        rowdata[2] = dto.getCity();
+        rowdata[3] = 0;
+        model.addRow(rowdata);
 
-        // command
-        Transaction transaction = new DepositEntry(accountNo, dialog.getAmount());
-        finCo.doTransaction(transaction);
-    }
-
-    private void withdraw() {
-        // dialog
-        Vector<Object> selectedAccount = ui.getSelectedModel();
-        String accountNo = (String) selectedAccount.get(0);
-        TransactionDialog dialog = new TransactionDialog(accountNo);
-        dialog.setTitle("Withdraw");
-        dialog.setBounds(430, 15, 275, 140);
-        dialog.setVisible(true);
-
-        // command
-        Transaction transaction = new WithdrawEntry(accountNo, dialog.getAmount());
-        finCo.doTransaction(transaction);
+        System.out.println("Add company account action performed");
     }
 }
