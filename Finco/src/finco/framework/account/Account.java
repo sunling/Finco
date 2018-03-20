@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import finco.framework.party.ACustomer;
-import finco.framework.party.ICustomer;
 
 
 /**
@@ -27,11 +26,11 @@ public abstract class Account implements IAccount {
     }
 	
 	@Override
-	public void addEntry(double amount) {
+	public void addEntry(double amount, String transaction_Type) {
 		// TODO Auto-generated method stub
 		Calendar calender = Calendar.getInstance();
         Date date = calender.getTime();
-        Entry entry = new Entry(amount, date);
+        Entry entry = new Entry(amount, date, transaction_Type);
         this.entryList.add(entry);
 
         balance += amount;
@@ -60,7 +59,7 @@ public abstract class Account implements IAccount {
 	}
 
 	@Override
-	public ICustomer getCustomer() {
+	public ACustomer getCustomer() {
 		// TODO Auto-generated method stub
 		return customer;
 	}

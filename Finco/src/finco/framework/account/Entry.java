@@ -10,10 +10,12 @@ public class Entry implements IEntry {
 
 	private Date date;
     private double amount;
+    private String transaction_Type;
 
-    public Entry(double amount, Date date) {
+    public Entry(double amount, Date date, String transaction_Type) {
         this.amount = amount;
         this.date = date;
+        this.transaction_Type = transaction_Type;
     }
 
     public Date getDate() {
@@ -23,5 +25,9 @@ public class Entry implements IEntry {
     public double getAmount() {
         return amount;
     }
+
+	public String getTransaction_Type() {
+		return transaction_Type;
+	}
 	
 }
