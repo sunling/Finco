@@ -3,6 +3,8 @@ package finco.framework.singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import finco.framework.account.Account;
 import finco.framework.party.ICustomer;
 
@@ -12,7 +14,7 @@ import finco.framework.party.ICustomer;
 
 public class LocalDataObject {
 	
-	HashMap<ICustomer, List<Account>> dataObject;
+	Map<ICustomer, List<Account>> dataObject = new HashMap<>();
 	private static LocalDataObject localDataObject = null;
 	private ArrayList<CustomerLog> customerLogList;
 	

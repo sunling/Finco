@@ -18,11 +18,11 @@ public abstract class ACustomer implements ICustomer{
     private String city;
     private String State;
     private String zip;
-    private List<IAccount> accounts;
+    private List<IAccount> accounts = new ArrayList<>();
 
-    public void Customer() {
-        this.accounts = new ArrayList<>();
-    }
+//    public void Customer() {
+//        this.accounts = new ArrayList<>();
+//    }
 	
 
 //    public void sendAlert(Entry entry, Account account);
