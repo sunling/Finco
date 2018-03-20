@@ -24,8 +24,7 @@ public class AddInterest implements Transaction {
 	public void execute() {
 		List<Account> accountList = db.getAllAccount();
 		for (Account account : accountList) {
-			double interest = account.getInterest();
-			account.setInterest(interest+addInterest);
+			account.addInterest();
 		}
 	}
 

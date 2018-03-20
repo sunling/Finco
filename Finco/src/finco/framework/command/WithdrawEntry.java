@@ -35,13 +35,13 @@ public class WithdrawEntry implements Transaction {
 		        Date date = calender.getTime();
 				account.setAmount(account.getBalance()-amount);
 				
-				//2. add entry TODO  In entry class we can add tnx type
+				//2. add entry In entry class we can add tnx type
 				account.addEntry(amount);
 				
 				//3.add log Here we can use entry to init Customer log
 				ACustomer customer = account.getCustomer();
 				CustomerLog log = new CustomerLog(customer.getName(),
-						accountNo,account.getAccountType(),"WITHDRAW",date,String.valueOf(amount));
+						accountNo,account.getAccountType(),"WITHdDRAW",date,String.valueOf(amount));
 				db.addLog(log);
 				break;
 			}else {

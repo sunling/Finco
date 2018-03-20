@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import finco.framework.account.Account;
-import finco.framework.account.Entry;
 import finco.framework.party.ACustomer;
 import finco.framework.singleton.CustomerLog;
 import finco.framework.singleton.LocalDataObject;
