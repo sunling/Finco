@@ -36,7 +36,7 @@ public class WithdrawEntry implements Transaction {
 				account.setAmount(account.getBalance()-amount);
 				
 				//2. add entry
-				Entry entry = new Entry(amount, date, "DEPOSIT");
+				Entry entry = new Entry(amount, date, "WITHDRAW");
 				account.addEntry(entry);
 				
 				//3.add log
