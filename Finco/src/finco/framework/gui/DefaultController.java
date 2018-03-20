@@ -1,14 +1,27 @@
 package finco.framework.gui;
 
+import finco.framework.IFinCo;
+import finco.framework.account.Account;
+import finco.framework.command.AddAccount;
+import finco.framework.command.Operation;
+import finco.framework.command.Transaction;
+import finco.framework.gui.component.AddAccountDialog;
+
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * @author: Enkhbayasgalan Galsandorj
+ */
 public class DefaultController {
 
     protected IMainUI ui;
-    protected FinCo finCo;
+    protected IFinCo finCo;
     protected DefaultTableModel model;
+    protected AccountFactory accountFactory;
+    protected TransactionCommandFactor transactionCommandFactor;
 
-    public DefaultController(FinCo finCo, IMainUI ui, DefaultTableModel model) {
+    public DefaultController(IFinCo finCo, IMainUI ui, DefaultTableModel model) {
         this.finCo = finCo;
         this.ui = ui;
         this.model = model;
@@ -20,23 +33,31 @@ public class DefaultController {
 
         initOperationalButtons();
         initTransactionalButtons();
+
+        accountFactory = new AccountFactory();
     }
 
     protected void initOperationalButtons() {
-        ui.addOperationalButton("Add account", new Command() {
-            @Override
-            public void execute() {
-                Object[] rowdata = new Object[4];
-                rowdata[0] = "1";
-                rowdata[1] = "2";
-                rowdata[2] = "3";
-                rowdata[3] = 100;
-                model.addRow(rowdata);
-            }
-        });
+        JButton button = new JButton();
+        button.addActionListener(e -> addAccount());
+        ui.addOperationalButton(button);
     }
 
     protected void initTransactionalButtons() {
 
+        ui.configureCreditTransactionButton("Deposit", transactionCommandFactor.createCommand("deposit"));
+        ui.configureDebitTransactionButton("Withdraw", transactionCommandFactor.createCommand("withdraw"));
+    }
+
+    private void addAccount() {
+
+        Account anAccount = accountFactory.createAccount();
+
+        AddAccountDialog pac = new AddAccountDialog(anAccount);
+        pac.setBounds(450, 20, 300, 330);
+        pac.show();
+
+        Operation operation = new AddAccount(anAccount.getCustomer(), anAccount);
+        finCo.doOperation(operation);
     }
 }

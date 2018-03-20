@@ -3,14 +3,17 @@ package finco.framework.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Vector;
 
+/**
+ * @author: Enkhbayasgalan Galsandorj
+ */
 public abstract class AMainUI implements IMainUI {
 
-    protected FinCo finCo;
     protected DefaultTableModel model;
 
 
@@ -28,8 +31,7 @@ public abstract class AMainUI implements IMainUI {
     protected JScrollPane JScrollPane1;
     protected JTable JTable1;
 
-    public AMainUI(FinCo finCo, DefaultTableModel tableModel) {
-        this.finCo = finCo;
+    public AMainUI(DefaultTableModel tableModel) {
         this.model = tableModel;
 
         jFrame = new JFrame();
@@ -102,22 +104,20 @@ public abstract class AMainUI implements IMainUI {
         jFrame.setVisible(true);
     }
 
-    public void addOperationalButton(final String label, final Command operationCmd) {
-        JButton button = new JButton(label);
+    public void addOperationalButton(JButton button) {
         button.setPreferredSize(new Dimension(192, 33));
-        button.addActionListener(e -> finCo.submitOperation(operationCmd));
         JPanel2.add(button);
     }
 
     @Override
-    public void configureCreditTransactionButton(final String label, final Command cmd) {
+    public void configureCreditTransactionButton(final String label, final ActionListener actionListener) {
         JButton_CreditTransaction.setText(label);
-        JButton_CreditTransaction.addActionListener(e -> finCo.submitTransaction(cmd));
+        JButton_CreditTransaction.addActionListener(actionListener);
     }
     @Override
-    public void configureDebitTransactionButton(final String label, final Command cmd) {
+    public void configureDebitTransactionButton(final String label, final ActionListener actionListener) {
         JButton_DebitTransaction.setText(label);
-        JButton_DebitTransaction.addActionListener(e -> finCo.submitTransaction(cmd));
+        JButton_DebitTransaction.addActionListener(actionListener);
     }
 
     @Override
