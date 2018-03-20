@@ -1,13 +1,14 @@
 package finco.framework.gui;
 
-import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
-
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
-import finco.framework.command.AddAccount;
-import finco.framework.command.Operation;
+import finco.framework.command.*;
 import finco.framework.gui.component.AddAccountDialog;
+import finco.framework.gui.component.TransactionDialog;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -18,7 +19,6 @@ public class DefaultController {
     protected IFinCo finCo;
     protected DefaultTableModel model;
     protected AccountFactory accountFactory;
-    protected TransactionCommandFactor transactionCommandFactor;
 
     public DefaultController(IFinCo finCo, IMainUI ui, DefaultTableModel model) {
         this.finCo = finCo;
@@ -44,19 +44,47 @@ public class DefaultController {
 
     protected void initTransactionalButtons() {
 
-        ui.configureCreditTransactionButton("Deposit", transactionCommandFactor.createCommand("deposit"));
-        ui.configureDebitTransactionButton("Withdraw", transactionCommandFactor.createCommand("withdraw"));
+        ui.configureCreditTransactionButton("Deposit", e -> deposit());
+        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
     }
 
     private void addAccount() {
 
         Account anAccount = accountFactory.createAccount();
 
-        AddAccountDialog pac = new AddAccountDialog(anAccount);
-        pac.setBounds(450, 20, 300, 330);
-        pac.show();
+        JDialog dialog = new AddAccountDialog(anAccount);
+        dialog.setBounds(450, 20, 300, 330);
+        dialog.setVisible(true);
 
         Operation operation = new AddAccount(anAccount.getCustomer(), anAccount);
         finCo.doOperation(operation);
+    }
+
+    private void deposit() {
+        // dialog
+        Vector<Object> selectedAccount = ui.getSelectedModel();
+        String accountNo = (String) selectedAccount.get(0);
+        TransactionDialog dialog = new TransactionDialog(accountNo);
+        dialog.setTitle("Deposit");
+        dialog.setBounds(430, 15, 275, 140);
+        dialog.setVisible(true);
+
+        // command
+        Transaction transaction = new DepositEntry(accountNo, dialog.getAmount());
+        finCo.doTransaction(transaction);
+    }
+
+    private void withdraw() {
+        // dialog
+        Vector<Object> selectedAccount = ui.getSelectedModel();
+        String accountNo = (String) selectedAccount.get(0);
+        TransactionDialog dialog = new TransactionDialog(accountNo);
+        dialog.setTitle("Withdraw");
+        dialog.setBounds(430, 15, 275, 140);
+        dialog.setVisible(true);
+
+        // command
+        Transaction transaction = new WithdrawEntry(accountNo, dialog.getAmount());
+        finCo.doTransaction(transaction);
     }
 }
