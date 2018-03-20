@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import finco.framework.account.Account;
-import finco.framework.party.ACustomer;
+import finco.framework.account.Entry;
 import finco.framework.singleton.CustomerLog;
 import finco.framework.singleton.LocalDataObject;
 
@@ -31,12 +31,11 @@ public class DepositEntry implements Transaction {
 				account.setAmount(account.getBalance()+amount);
 				
 				//2. add entry
-				account.addEntry(amount);
+				Entry entry = new Entry(amount, date, "DEPOSIT");
+				account.addEntry(entry);
 				
 				//3.add log
-				ACustomer customer = account.getCustomer();
-				CustomerLog log = new CustomerLog(customer.getName(),
-						accountNo,account.getAccountType(),"DEPOSIT",date,String.valueOf(amount));
+				CustomerLog log = new CustomerLog(account,entry);
 				db.addLog(log);
 				break;
 			}else {

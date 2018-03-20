@@ -1,9 +1,8 @@
 package finco.framework.account;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
 import finco.framework.party.ACustomer;
 
 
@@ -26,27 +25,18 @@ public abstract class Account implements IAccount {
     }
 	
 	@Override
-	public void addEntry(double amount, String transaction_Type) {
-		// TODO Auto-generated method stub
-		Calendar calender = Calendar.getInstance();
-        Date date = calender.getTime();
-        Entry entry = new Entry(amount, date, transaction_Type);
+	public void addEntry(Entry entry) {
         this.entryList.add(entry);
-
-        balance += amount;
-        
-        //notifyToCustomer(entry, this);
+        balance += entry.getAmount();
 	}
 
 	@Override
 	public String getAccountType() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void addInterest() {
-		// TODO Auto-generated method stub
 		double rate = this.getInterest();
         double interest = balance * rate;
         balance = balance + interest;
@@ -54,13 +44,11 @@ public abstract class Account implements IAccount {
 
 	@Override
 	public double getInterest() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public ACustomer getCustomer() {
-		// TODO Auto-generated method stub
 		return customer;
 	}
 	

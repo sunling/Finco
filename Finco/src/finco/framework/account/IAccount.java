@@ -7,7 +7,7 @@ import finco.framework.party.ACustomer;
 */
 public interface IAccount {
 
-   public void addEntry(double amount, String transaction_Type);
+   public void addEntry(Entry entry);
    public void addInterest();
    public double getBalance();
    public String getAccountType();

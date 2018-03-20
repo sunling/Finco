@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import finco.framework.account.Account;
-import finco.framework.party.ACustomer;
+import finco.framework.account.Entry;
 import finco.framework.singleton.CustomerLog;
 import finco.framework.singleton.LocalDataObject;
 
@@ -35,13 +35,12 @@ public class WithdrawEntry implements Transaction {
 		        Date date = calender.getTime();
 				account.setAmount(account.getBalance()-amount);
 				
-				//2. add entry In entry class we can add tnx type
-				account.addEntry(amount);
+				//2. add entry
+				Entry entry = new Entry(amount, date, "DEPOSIT");
+				account.addEntry(entry);
 				
-				//3.add log Here we can use entry to init Customer log
-				ACustomer customer = account.getCustomer();
-				CustomerLog log = new CustomerLog(customer.getName(),
-						accountNo,account.getAccountType(),"WITHdDRAW",date,String.valueOf(amount));
+				//3.add log
+				CustomerLog log = new CustomerLog(account,entry);
 				db.addLog(log);
 				break;
 			}else {
