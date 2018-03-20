@@ -6,6 +6,8 @@ import finco.framework.gui.IMainUI;
 
 import javax.swing.table.DefaultTableModel;
 
+import bank.controller.BankController;
+
 public class Bank {
     public static void main(String[] args) {
 

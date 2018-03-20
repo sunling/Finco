@@ -1,4 +1,4 @@
-package bank.gui;
+package bank.controller;
 
 import finco.framework.gui.Command;
 import finco.framework.gui.DefaultController;
@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class BankController extends DefaultController {
 
+	
     public BankController(FinCo finCo, IMainUI ui, DefaultTableModel model) {
         super(finCo, ui, model);
     }
@@ -46,4 +47,8 @@ public class BankController extends DefaultController {
             }
         });
     }
+    
+    protected void addPersonalAccount() {
+		
+	}
 }

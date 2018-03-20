@@ -31,21 +31,17 @@ public abstract class Account implements IAccount {
 	}
 
 	@Override
-	public String getAccountType() {
-		return null;
-	}
+	public abstract String getAccountType();
+	
 
 	@Override
 	public void addInterest() {
-		double rate = this.getInterest();
-        double interest = balance * rate;
+        double interest = balance * this.getInterestRate();
         balance = balance + interest;
 	}	
 
 	@Override
-	public double getInterest() {
-		return 0;
-	}
+	public abstract double getInterestRate();
 
 	@Override
 	public ACustomer getCustomer() {

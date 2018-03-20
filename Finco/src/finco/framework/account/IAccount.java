@@ -11,7 +11,7 @@ public interface IAccount {
    public void addInterest();
    public double getBalance();
    public String getAccountType();
-   public double getInterest();
+   public double getInterestRate();
    public ACustomer getCustomer();
    public String getAccountNo();
 //   public void notifyCustomer(Entry entry, Account account);
