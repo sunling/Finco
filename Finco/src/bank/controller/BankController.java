@@ -91,7 +91,6 @@ public class BankController extends DefaultController {
 	}
 
 	private void addInterest() {
-<<<<<<< HEAD
 		finCo.doTransaction(new AddInterest());
 		refreshList();
 		System.out.println("Add interest to all of accounts");
@@ -124,40 +123,9 @@ public class BankController extends DefaultController {
 			}
 		}
 		ui.getFrame().repaint();
-	}
-=======
+
         finCo.doTransaction(TransactionCommandFactory.getInstance("ADD INTEREST", null, 0));
         refreshList();
         System.out.println("Add interest to all of accounts");
     }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected void refreshList() {
-        LocalDataObject db = LocalDataObject.getInstance();
-        for (Account acc : db.getAllAccount()) {
-            boolean found = false;
-            for(Object obj: model.getDataVector()) {
-                Vector vec = (Vector)obj;
-                if (vec.elementAt(0).equals(acc.getAccountNo())) {
-                    found = true;
-                    vec.set(1, acc.getCustomer().getName());
-                    vec.set(2, acc.getCustomer().getCity());
-                    vec.set(5, acc.getBalance());
-                }
-            }
-            if (!found) {
-                // add data to table
-                Object[] rowdata = new Object[6];
-                rowdata[0] = acc.getAccountNo();
-                rowdata[1] = acc.getCustomer().getName();
-                rowdata[2] = acc.getCustomer().getCity();
-                rowdata[3] = acc.getCustomer().getCustomerType();
-                rowdata[4] = acc.getAccountType();
-                rowdata[5] = acc.getBalance();
-                model.addRow(rowdata);
-            }
-        }
-        ui.getFrame().repaint();
-    }
->>>>>>> 2694d1273d35c16d64b1d2c986cf481a2dcef2e7
 }
