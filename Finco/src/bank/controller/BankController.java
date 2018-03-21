@@ -3,8 +3,6 @@ package bank.controller;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import bank.account.Checkings;
-import bank.account.Savings;
 import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
@@ -12,14 +10,8 @@ import bank.gui.component.AddPersonalAccountDialog;
 import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
 import finco.framework.IFinCo;
-import finco.framework.account.Account;
-import finco.framework.command.*;
-import finco.framework.gui.DefaultController;
-import finco.framework.gui.IMainUI;
-import finco.framework.gui.component.TransactionDialog;
-import finco.framework.party.ICustomer;
-
-import java.util.Vector;
+import finco.framework.mvc.controller.DefaultController;
+import finco.framework.mvc.view.IMainUI;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -45,8 +37,8 @@ public class BankController extends DefaultController {
     }
 
     protected void initTransactionalButtons() {
-        ui.configureCreditTransactionButton("Deposit", e -> deposit());
-        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
+//        ui.configureCreditTransactionButton("Deposit", e -> deposit());
+//        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
     }
     
     private void addPersonalAccount() {
@@ -60,13 +52,7 @@ public class BankController extends DefaultController {
             finCo.doOperation(new AddPersonalAccount(dto));
         }
 
-        // add data to table
-        Object[] rowdata = new Object[4];
-        rowdata[0] = dto.getAccountNo();
-        rowdata[1] = dto.getCustomerName();
-        rowdata[2] = dto.getCity();
-        rowdata[3] = 0;
-        model.addRow(rowdata);
+        refreshList();
 
         System.out.println("Add personal account action performed");
 	}
@@ -82,13 +68,7 @@ public class BankController extends DefaultController {
             finCo.doOperation(new AddCompanyAccount(dto));
         }
 
-        // add data to table
-        Object[] rowdata = new Object[4];
-        rowdata[0] = dto.getAccountNo();
-        rowdata[1] = dto.getCustomerName();
-        rowdata[2] = dto.getCity();
-        rowdata[3] = 0;
-        model.addRow(rowdata);
+        refreshList();
 
         System.out.println("Add company account action performed");
     }

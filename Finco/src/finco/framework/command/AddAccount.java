@@ -2,7 +2,7 @@ package finco.framework.command;
 
 import finco.framework.account.Account;
 import finco.framework.factory.CustomerFactory;
-import finco.framework.model.CustomerAccountDTO;
+import finco.framework.mvc.model.CustomerAccountDTO;
 import finco.framework.party.ACustomer;
 import finco.framework.singleton.LocalDataObject;
 

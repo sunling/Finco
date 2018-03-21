@@ -1,4 +1,4 @@
-package finco.framework.model;
+package finco.framework.mvc.model;
 
 public class TransactionDTO {
     private String accountNumber;

@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import bank.controller.BankController;
 import finco.framework.FinCo;
 import finco.framework.IFinCo;
-import finco.framework.gui.IMainUI;
+import finco.framework.mvc.view.IMainUI;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
