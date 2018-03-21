@@ -6,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
-import bank.gui.component.AddInterestDialog;
 import bank.gui.component.AddPersonalAccountDialog;
 import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
