@@ -12,7 +12,9 @@ public class CustomerAccountDTO {
     private String zip;
 
     public boolean isValid() {
-        return accountNo != null && customerName != null && email != null;
+       //return !accountNo.isEmpty() && !customerName.isEmpty() && !email.isEmpty() && !accountType.isEmpty(); 
+       return !(accountNo.equals("") || customerName.equals("") || email.equals(""));
+    		//return accountNo != null || customerName != null || email != null || accountType != null || accountType != "" || accountNo != "" || customerName != "" || email != "";
     }
 
     public String getAccountType() {

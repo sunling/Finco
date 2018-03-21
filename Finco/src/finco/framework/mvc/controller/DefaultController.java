@@ -67,12 +67,15 @@ public class DefaultController {
         AddAccountDialog dialog = new AddAccountDialog(dto);
         dialog.setVisible(true);
 
-        if (dto.isValid())
+        if (dto.isValid()) {
             finCo.doOperation(new AddAccount(dto));
-
+            System.out.println("Add account action performed in default controller");
+        }
+        else {
+        		System.out.println("Name, Account number and Email address are mandatory!");
+        }
         refreshList();
 
-        System.out.println("Add account action performed in default controller");
     }
 
     protected void generateReport() {
