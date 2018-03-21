@@ -66,20 +66,10 @@ public abstract class Account implements IAccount {
     public void setAmount(double amount) {
         balance = amount;
     }
-
-//    public String getExpDate() {
-//        return exp_Date;
-//    }
-//
-//    public void setExpDate(String exp_Date) {
-//        this.exp_Date = exp_Date;
-//    }
 	
-	
-//	@Override
-//	public void notifyCustomer(Entry entry, Account account) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
+	@Override
+	public void notifyCustomer(Entry entry, Account account) {
+		// TODO Auto-generated method stub
+		this.getCustomer().sendAlert(entry, account);
+	}
 }

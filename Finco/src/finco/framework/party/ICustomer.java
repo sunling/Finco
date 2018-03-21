@@ -1,6 +1,9 @@
 package finco.framework.party;
 
 import java.util.List;
+
+import finco.framework.account.Account;
+import finco.framework.account.Entry;
 import finco.framework.account.IAccount;
 
 /**
@@ -12,5 +15,5 @@ public interface ICustomer {
     public void removeAccount(IAccount account);
     public String getCustomerType();
     public List<IAccount> getAccounts();
-//    public void sendAlert(Entry entry, Account account);
+    public void sendAlert(Entry entry, Account account);
 }
