@@ -1,18 +1,12 @@
 package finco.framework.mvc.controller;
 
-import java.util.Vector;
-
-import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
-
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
 import finco.framework.command.AddAccount;
-import finco.framework.command.DepositEntry;
 import finco.framework.command.GenerateReport;
-import finco.framework.command.WithdrawEntry;
 import finco.framework.factory.AccountFactory;
 import finco.framework.factory.CustomerFactory;
+import finco.framework.factory.TransactionCommandFactory;
 import finco.framework.functor.MonthlyReport;
 import finco.framework.mvc.model.CustomerAccountDTO;
 import finco.framework.mvc.model.TransactionDTO;
@@ -21,6 +15,10 @@ import finco.framework.mvc.view.component.AddAccountDialog;
 import finco.framework.mvc.view.component.ReportDialog;
 import finco.framework.mvc.view.component.TransactionDialog;
 import finco.framework.singleton.LocalDataObject;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -88,6 +86,9 @@ public class DefaultController {
         dialog.setVisible(true);
 
         System.out.println("Generate report action performed");
+        System.out.println("Customers count: " + db.getAllCustomer().size());
+        db.getAllCustomer().forEach(c -> System.out.println(c.getCustomerType()));
+        System.out.println("Accounts count: " + db.getAllAccount().size());
         System.out.println(monthlyReport.getResult());
     }
 
@@ -102,7 +103,7 @@ public class DefaultController {
 
             // command
             if (dto.getAmount() != null)
-                finCo.doTransaction(new DepositEntry(dto.getAccountNumber(), dto.getAmount()));
+                finCo.doTransaction(TransactionCommandFactory.getInstance("DEPOSIT", dto.getAccountNumber(), dto.getAmount()));
 
             // update list
             refreshList();
@@ -122,7 +123,7 @@ public class DefaultController {
 
             // command
             if (dto.getAmount() != null)
-                finCo.doTransaction(new WithdrawEntry(dto.getAccountNumber(), dto.getAmount()));
+                finCo.doTransaction(TransactionCommandFactory.getInstance("WITHDRAW", dto.getAccountNumber(), dto.getAmount()));
 
             refreshList();
         }
