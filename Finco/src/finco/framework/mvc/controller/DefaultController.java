@@ -4,7 +4,6 @@ import finco.framework.IFinCo;
 import finco.framework.account.Account;
 import finco.framework.command.AddAccount;
 import finco.framework.command.GenerateReport;
-import finco.framework.factory.AccountFactory;
 import finco.framework.factory.CustomerFactory;
 import finco.framework.factory.TransactionCommandFactory;
 import finco.framework.functor.MonthlyReport;
@@ -29,8 +28,7 @@ public class DefaultController {
     protected IFinCo finCo;
     protected DefaultTableModel model;
     protected CustomerFactory customerFactory;
-    protected AccountFactory accountFactory;
-
+    
     public DefaultController(IFinCo finCo, IMainUI ui, DefaultTableModel model) {
         this.finCo = finCo;
         this.ui = ui;
@@ -39,7 +37,6 @@ public class DefaultController {
         initOperationalButtons();
         initTransactionalButtons();
 
-        accountFactory = new AccountFactory();
     }
 
     protected void initOperationalButtons() {
