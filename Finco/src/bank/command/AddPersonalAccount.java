@@ -23,6 +23,14 @@ public class AddPersonalAccount implements Operation {
 
     @Override
     public void execute() {
+
+        // check existing account
+        for(Account acc: db.getAllAccount()) {
+            if (acc.getAccountNo().equals(personalAccount.getAccountNo()))
+                // account number duplicate
+                return;
+        }
+
         // TODO: use factory
         customer = new Person();
 

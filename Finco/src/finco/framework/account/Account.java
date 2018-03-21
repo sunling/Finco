@@ -38,8 +38,8 @@ public abstract class Account implements IAccount {
 	@Override
 	public void addInterest() {
 		DecimalFormat fmt = new DecimalFormat("##0.00");
-		double interest = Double.valueOf(fmt.format(balance * this.getInterestRate()));
-        balance = balance + interest;
+		double interest = balance * this.getInterestRate();
+        balance = Double.valueOf(fmt.format(balance + interest));
 	}	
 
 	@Override
