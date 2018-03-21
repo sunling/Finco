@@ -36,9 +36,7 @@ public class LocalDataObject {
     public List<Account> getAllAccount() {
         List<Account> allAccounts = new ArrayList<>();
         for (List<Account> list : dataObject.values()) {
-            for (Account account : list) {
-                allAccounts.add(account);
-            }
+            allAccounts.addAll(list);
         }
         return allAccounts;
     }

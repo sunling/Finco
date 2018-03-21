@@ -43,7 +43,12 @@ public class BankController extends DefaultController {
         JButton button3 = new JButton("Add Interest");
         button3.addActionListener(e -> addInterest());
         ui.addOperationalButton(button3);
-        
+
+        // Generate a report of accounts
+        JButton button4 = new JButton("Generate Report");
+        button4.addActionListener(e -> generateReport());
+        ui.addOperationalButton(button4);
+
     }
 
     protected void initTransactionalButtons() {

@@ -24,7 +24,7 @@ public class AddCompanyAccount implements Operation {
 
         // check existing account
         for(Account acc: db.getAllAccount()) {
-            if (acc.getAccountNo().equals(account.getAccountNo()))
+            if (acc.getAccountNo().equals(accountDTO.getAccountNo()))
                 // account number duplicate
                 return;
         }

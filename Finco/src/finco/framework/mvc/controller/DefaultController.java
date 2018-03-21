@@ -77,7 +77,7 @@ public class DefaultController {
         System.out.println("Add account action performed in default controller");
     }
 
-    private void generateReport() {
+    protected void generateReport() {
         LocalDataObject db = LocalDataObject.getInstance();
         MonthlyReport monthlyReport = new MonthlyReport(db);
         for(Account account: db.getAllAccount()) {

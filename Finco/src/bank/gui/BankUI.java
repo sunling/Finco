@@ -3,6 +3,7 @@ package bank.gui;
 import finco.framework.mvc.view.BaseUI;
 
 import javax.swing.table.DefaultTableModel;
+import java.awt.Dimension;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -27,5 +28,9 @@ public class BankUI extends BaseUI {
         model.addColumn("Ch/S");
         model.addColumn("Amount");
 
+    }
+
+    protected Dimension getPreferredSizeForOpsBtnsContainer() {
+        return new Dimension(575, 90);
     }
 }

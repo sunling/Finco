@@ -58,7 +58,7 @@ public abstract class BaseUI implements IMainUI {
         JTable1.setBounds(0, 0, 420, 0);
 
         JPanel2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        JPanel2.setPreferredSize(new Dimension(575, 45));
+        JPanel2.setPreferredSize(getPreferredSizeForOpsBtnsContainer());
         jFrame.getContentPane().add(BorderLayout.PAGE_START, JPanel2);
 
         JPanel1.add(JPanel3);
@@ -134,5 +134,9 @@ public abstract class BaseUI implements IMainUI {
                 }
             }
         };
+    }
+
+    protected Dimension getPreferredSizeForOpsBtnsContainer() {
+        return new Dimension(575, 45);
     }
 }

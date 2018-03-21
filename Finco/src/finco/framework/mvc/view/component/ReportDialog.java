@@ -21,6 +21,7 @@ public class ReportDialog extends JDialog
 		getContentPane().setLayout(null);
 		setSize(405,367);
 		setVisible(false);
+		setTitle("Report");
 		getContentPane().add(JScrollPane1);
 		JScrollPane1.setBounds(24,24,358,240);
 		JScrollPane1.getViewport().add(JTextField1);
