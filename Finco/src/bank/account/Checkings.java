@@ -14,7 +14,7 @@ public class Checkings extends Account implements IAccount {
 
 	@Override
 	public String getAccountType() {
-		return "Checking";
+		return "Checkings";
 	}
 
 	@Override

@@ -1,5 +1,10 @@
 package finco.framework.mvc.controller;
 
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
 import finco.framework.command.AddAccount;
@@ -9,17 +14,13 @@ import finco.framework.command.WithdrawEntry;
 import finco.framework.factory.AccountFactory;
 import finco.framework.factory.CustomerFactory;
 import finco.framework.functor.MonthlyReport;
+import finco.framework.mvc.model.CustomerAccountDTO;
+import finco.framework.mvc.model.TransactionDTO;
 import finco.framework.mvc.view.IMainUI;
 import finco.framework.mvc.view.component.AddAccountDialog;
 import finco.framework.mvc.view.component.ReportDialog;
 import finco.framework.mvc.view.component.TransactionDialog;
-import finco.framework.mvc.model.CustomerAccountDTO;
-import finco.framework.mvc.model.TransactionDTO;
 import finco.framework.singleton.LocalDataObject;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -123,7 +124,6 @@ public class DefaultController {
             if (dto.getAmount() != null)
                 finCo.doTransaction(new WithdrawEntry(dto.getAccountNumber(), dto.getAmount()));
 
-            // update list
             refreshList();
         }
 
@@ -136,12 +136,13 @@ public class DefaultController {
         dialog.setVisible(true);
     }
 
-    protected void refreshList() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	protected void refreshList() {
         LocalDataObject db = LocalDataObject.getInstance();
-
         for (Account acc : db.getAllAccount()) {
             boolean found = false;
-            for(Vector vec: model.getDataVector()) {
+            for(Object obj: model.getDataVector()) {
+            		Vector vec = (Vector)obj;
                 if (vec.elementAt(0).equals(acc.getAccountNo())) {
                     found = true;
                     vec.set(1, acc.getCustomer().getName());

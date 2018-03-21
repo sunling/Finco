@@ -14,7 +14,7 @@ public class Savings extends Account implements IAccount {
 
 	@Override
 	public String getAccountType() {
-		return "Saving";
+		return "Savings";
 	}
 
 	@Override
