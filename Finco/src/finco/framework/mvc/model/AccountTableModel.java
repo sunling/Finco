@@ -1,4 +1,4 @@
-package finco.framework.model;
+package finco.framework.mvc.model;
 
 import javax.swing.table.DefaultTableModel;
 

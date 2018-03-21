@@ -2,9 +2,9 @@ package finco.framework;
 
 import finco.framework.command.Operation;
 import finco.framework.command.Transaction;
-import finco.framework.gui.IMainUI;
-import finco.framework.gui.DefaultController;
-import finco.framework.gui.DefaultUI;
+import finco.framework.mvc.view.IMainUI;
+import finco.framework.mvc.controller.DefaultController;
+import finco.framework.mvc.view.DefaultUI;
 import finco.framework.proxy.EmptyProxyFunc;
 import finco.framework.proxy.ProxyFinCo;
 

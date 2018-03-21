@@ -1,6 +1,6 @@
-package finco.framework.gui.component;
+package finco.framework.mvc.view.component;
 
-import finco.framework.model.CustomerAccountDTO;
+import finco.framework.mvc.model.CustomerAccountDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,6 +92,8 @@ public class AddAccountDialog extends JDialog {
         JButton_OK.addActionListener(lSymAction);
         JButton_Cancel.addActionListener(lSymAction);
         //}}
+
+        this.setBounds(450, 20, 300, 330);
     }
 
 

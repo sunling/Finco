@@ -8,7 +8,7 @@ import finco.framework.FinCo;
 import finco.framework.IFinCo;
 import finco.framework.command.Operation;
 import finco.framework.command.Transaction;
-import finco.framework.gui.IMainUI;
+import finco.framework.mvc.view.IMainUI;
 import finco.framework.proxy.EmptyProxyFunc;
 import finco.framework.proxy.ProxyFinCo;
 import finco.framework.proxy.ProxyFunctor;

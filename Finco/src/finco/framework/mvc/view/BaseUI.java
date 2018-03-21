@@ -1,9 +1,17 @@
-package finco.framework.gui;
+package finco.framework.mvc.view;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -12,7 +20,7 @@ import java.util.Vector;
 /**
  * @author: Enkhbayasgalan Galsandorj
  */
-public abstract class AMainUI implements IMainUI {
+public abstract class BaseUI implements IMainUI {
 
     protected DefaultTableModel model;
 
@@ -24,14 +32,10 @@ public abstract class AMainUI implements IMainUI {
     protected JPanel JPanel3 = new JPanel();
     protected JPanel JPanel4 = new JPanel();
 
-    private JButton JButton_CreditTransaction = new JButton();
-    private JButton JButton_DebitTransaction = new JButton();
-    private JButton JButton_Exit = new JButton();
-
     protected JScrollPane JScrollPane1;
     protected JTable JTable1;
 
-    public AMainUI(DefaultTableModel tableModel) {
+    public BaseUI(DefaultTableModel tableModel) {
         this.model = tableModel;
 
         jFrame = new JFrame();
@@ -46,46 +50,35 @@ public abstract class AMainUI implements IMainUI {
         JPanel1.setPreferredSize(new Dimension(575, 310));
         jFrame.getContentPane().add(BorderLayout.CENTER, JPanel1);
 
-        JPanel2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        JPanel2.setPreferredSize(new Dimension(575, 45));
-        jFrame.getContentPane().add(BorderLayout.PAGE_START, JPanel2);
-
-
         JScrollPane1 = new JScrollPane();
         JTable1 = new JTable(model);
-
         JPanel1.add(JScrollPane1);
         JScrollPane1.setPreferredSize(new Dimension(444, 200));
         JScrollPane1.getViewport().add(JTable1);
         JTable1.setBounds(0, 0, 420, 0);
 
-        JPanel1.add(JPanel3);
+        JPanel2.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        JPanel2.setPreferredSize(new Dimension(575, 45));
+        jFrame.getContentPane().add(BorderLayout.PAGE_START, JPanel2);
 
+        JPanel1.add(JPanel3);
         JPanel3.setLayout(new BoxLayout(JPanel3, BoxLayout.PAGE_AXIS));
-        JButton_CreditTransaction.setText("deposit");
-        JPanel3.add(JButton_CreditTransaction);
-        JButton_CreditTransaction.setMinimumSize(new Dimension(96, 33));
-        JButton_CreditTransaction.setMaximumSize(new Dimension(96, 33));
-        JButton_CreditTransaction.setPreferredSize(new Dimension(96, 33));
-        JButton_DebitTransaction.setText("withdraw");
-        JPanel3.add(JButton_DebitTransaction);
-        JButton_DebitTransaction.setMinimumSize(new Dimension(96, 33));
-        JButton_DebitTransaction.setMaximumSize(new Dimension(96, 33));
-        JButton_DebitTransaction.setPreferredSize(new Dimension(96, 33));
 
         JPanel4.setLayout(new BorderLayout());
         jFrame.getContentPane().add(BorderLayout.PAGE_END, JPanel4);
 
+        JButton JButton_Exit = new JButton();
         JButton_Exit.setText("Exit");
         JPanel4.add(BorderLayout.LINE_END, JButton_Exit);
-        JButton_Exit.setPreferredSize(new Dimension(96, 31));
-        JButton_Exit.setMaximumSize(new Dimension(96, 31));
-        JButton_Exit.setMinimumSize(new Dimension(96, 31));
+        Dimension exitBtnDimen = new Dimension(96, 31);
+        JButton_Exit.setPreferredSize(exitBtnDimen);
+        JButton_Exit.setMaximumSize(exitBtnDimen);
+        JButton_Exit.setMinimumSize(exitBtnDimen);
         JButton_Exit.addActionListener(e->System.exit(0));
 
-
-
         jFrame.addWindowListener(getWindowListener());
+
+        configureTableHeader();
     }
 
     @SuppressWarnings("unchecked")
@@ -105,25 +98,25 @@ public abstract class AMainUI implements IMainUI {
         jFrame.setVisible(true);
     }
 
+    private Dimension oprnBtnDimension = new Dimension(192, 33);
+    @Override
     public void addOperationalButton(JButton button) {
-        button.setPreferredSize(new Dimension(192, 33));
+        button.setPreferredSize(oprnBtnDimension);
         JPanel2.add(button);
     }
 
+    private Dimension trnxBtnDimension = new Dimension(96, 33);
     @Override
-    public void configureCreditTransactionButton(final String label, final ActionListener actionListener) {
-        JButton_CreditTransaction.setText(label);
-        JButton_CreditTransaction.addActionListener(actionListener);
-    }
-    @Override
-    public void configureDebitTransactionButton(final String label, final ActionListener actionListener) {
-        JButton_DebitTransaction.setText(label);
-        JButton_DebitTransaction.addActionListener(actionListener);
+    public void addTransactionalButton(JButton button) {
+        JPanel3.add(button);
+        button.setMinimumSize(trnxBtnDimension);
+        button.setMaximumSize(trnxBtnDimension);
+        button.setPreferredSize(trnxBtnDimension);
     }
 
     @Override
-    public JPanel getJPanel() {
-        return JPanel1;
+    public JFrame getFrame() {
+        return jFrame;
     }
 
     protected WindowListener getWindowListener() {

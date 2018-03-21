@@ -1,6 +1,6 @@
-package finco.framework.gui.component;
+package finco.framework.mvc.view.component;
 
-import finco.framework.model.TransactionDTO;
+import finco.framework.mvc.model.TransactionDTO;
 
 import javax.swing.*;
 import java.awt.*;

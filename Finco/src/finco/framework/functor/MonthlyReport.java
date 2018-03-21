@@ -25,7 +25,9 @@ public class MonthlyReport implements Functor<Account, String>{
 		String newRecord = System.lineSeparator();
 		
 		report.append("Account : " + account.getAccountNo() + "\t\t Balance : " + account.getBalance());
+		report.append(newRecord);
 		report.append("Transaction Type" + "\t\t Ammount" + "\t\t Date");
+		report.append(newRecord);
 		for(CustomerLog logEntry : log) {
 			
 			if(logEntry.getAccount_No() == account.getAccountNo()) {

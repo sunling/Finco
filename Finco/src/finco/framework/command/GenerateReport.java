@@ -15,9 +15,9 @@ public class GenerateReport implements Operation {
 	private ReportGenerator reportGenerator;
 	private Functor<Account, String> functor;
 	
-	public GenerateReport(Account account,ReportGenerator reportGenerator,Functor<Account, String> functor) {
+	public GenerateReport(Account account, Functor<Account, String> functor) {
+		this.reportGenerator = ReportGenerator.getInstance();
 		this.account = account;
-		this.reportGenerator = reportGenerator;
 		this.functor = functor;
 	}
 	@Override

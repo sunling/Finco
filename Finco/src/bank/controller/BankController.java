@@ -12,8 +12,8 @@ import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
 import finco.framework.IFinCo;
 import finco.framework.command.AddInterest;
-import finco.framework.gui.DefaultController;
-import finco.framework.gui.IMainUI;
+import finco.framework.mvc.controller.DefaultController;
+import finco.framework.mvc.view.IMainUI;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -44,8 +44,8 @@ public class BankController extends DefaultController {
     }
 
     protected void initTransactionalButtons() {
-        ui.configureCreditTransactionButton("Deposit", e -> deposit());
-        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
+//        ui.configureCreditTransactionButton("Deposit", e -> deposit());
+//        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
     }
     
     private void addPersonalAccount() {
@@ -59,13 +59,7 @@ public class BankController extends DefaultController {
             finCo.doOperation(new AddPersonalAccount(dto));
         }
 
-        // add data to table
-        Object[] rowdata = new Object[4];
-        rowdata[0] = dto.getAccountNo();
-        rowdata[1] = dto.getCustomerName();
-        rowdata[2] = dto.getCity();
-        rowdata[3] = 0;
-        model.addRow(rowdata);
+        refreshList();
 
         System.out.println("Add personal account action performed");
 	}
@@ -81,13 +75,7 @@ public class BankController extends DefaultController {
             finCo.doOperation(new AddCompanyAccount(dto));
         }
 
-        // add data to table
-        Object[] rowdata = new Object[4];
-        rowdata[0] = dto.getAccountNo();
-        rowdata[1] = dto.getCustomerName();
-        rowdata[2] = dto.getCity();
-        rowdata[3] = 0;
-        model.addRow(rowdata);
+        refreshList();
 
         System.out.println("Add company account action performed");
     }

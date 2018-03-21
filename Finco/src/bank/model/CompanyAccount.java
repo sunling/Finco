@@ -1,6 +1,6 @@
 package bank.model;
 
-import finco.framework.model.CustomerAccountDTO;
+import finco.framework.mvc.model.CustomerAccountDTO;
 
 public class CompanyAccount extends CustomerAccountDTO {
     private String numOfEmployee;
