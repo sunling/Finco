@@ -29,6 +29,7 @@ public abstract class Account implements IAccount {
 	public void addEntry(Entry entry) {
         this.entryList.add(entry);
         balance += entry.getAmount();
+        notifyCustomer(entry, this);
 	}
 
 	@Override
