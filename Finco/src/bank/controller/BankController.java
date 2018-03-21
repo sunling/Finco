@@ -44,8 +44,7 @@ public class BankController extends DefaultController {
     }
 
     protected void initTransactionalButtons() {
-//        ui.configureCreditTransactionButton("Deposit", e -> deposit());
-//        ui.configureDebitTransactionButton("Withdraw", e -> withdraw());
+        super.initTransactionalButtons(); // same as framework
     }
     
     private void addPersonalAccount() {
