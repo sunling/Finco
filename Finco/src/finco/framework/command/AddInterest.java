@@ -14,12 +14,6 @@ public class AddInterest implements Transaction {
 
 	private LocalDataObject db =LocalDataObject.getInstance();
 	
-	double addInterest =0.0;
-	
-	public AddInterest(double addInterest) {
-		this.addInterest = addInterest;
-	}
-	
 	@Override
 	public void execute() {
 		List<Account> accountList = db.getAllAccount();

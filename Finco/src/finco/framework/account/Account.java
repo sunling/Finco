@@ -1,5 +1,6 @@
 package finco.framework.account;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,8 @@ public abstract class Account implements IAccount {
 
 	@Override
 	public void addInterest() {
-        double interest = balance * this.getInterestRate();
+		DecimalFormat fmt = new DecimalFormat("##0.00");
+		double interest = Double.valueOf(fmt.format(balance * this.getInterestRate()));
         balance = balance + interest;
 	}	
 

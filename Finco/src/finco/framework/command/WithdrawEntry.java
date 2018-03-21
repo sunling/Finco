@@ -32,6 +32,7 @@ public class WithdrawEntry implements Transaction {
 			if(accountNo.equals(account.getAccountNo())) {
 				//0.check
 				if(account.getBalance() - amount < 0) {
+					System.out.println("Balance is insufficient");
 					break;
 				}
 				//1.update balance

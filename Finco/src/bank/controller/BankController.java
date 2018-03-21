@@ -31,15 +31,15 @@ public class BankController extends DefaultController {
         button.addActionListener(e -> addPersonalAccount());
         ui.addOperationalButton(button);
 
+        // Add Company Account
+        JButton button2 = new JButton("Add Company Account");
+        button2.addActionListener(e -> addCompanyAccount());
+        ui.addOperationalButton(button2);
+        
         // Add Interest
         JButton button3 = new JButton("Add Interest");
         button3.addActionListener(e -> addInterest());
         ui.addOperationalButton(button3);
-        
-        // Add Company Account
-        JButton button2 = new JButton("Add Company1 Account");
-        button2.addActionListener(e -> addCompanyAccount());
-        ui.addOperationalButton(button2);
         
     }
 
@@ -80,16 +80,8 @@ public class BankController extends DefaultController {
     }
 	
 	private void addInterest() {
-        AddInterestDialog dialog = new AddInterestDialog();
-        dialog.setBounds(450, 20, 300, 330);
-        dialog.setVisible(true);
-
-        if (dialog.getAddInterest() >0) {
-            finCo.doTransaction(new AddInterest(dialog.getAddInterest()));
-        }
-        
+		finCo.doTransaction(new AddInterest());
         refreshList();
-        
         System.out.println("Add interest to all of accounts");
     }
 }

@@ -17,7 +17,7 @@ public class TransactionCommandFactory {
             case "WITHDRAW":
                 return new WithdrawEntry(accountNo, amount);
             case "ADD INTEREST":
-                return new AddInterest(amount);
+                return new AddInterest();
             default:
                 return null;
         }
