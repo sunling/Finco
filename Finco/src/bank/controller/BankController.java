@@ -1,23 +1,19 @@
 package bank.controller;
 
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
+import bank.gui.component.AddInterestDialog;
 import bank.gui.component.AddPersonalAccountDialog;
 import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
 import finco.framework.IFinCo;
-import finco.framework.command.DepositEntry;
-import finco.framework.command.Transaction;
-import finco.framework.command.WithdrawEntry;
+import finco.framework.command.AddInterest;
 import finco.framework.gui.DefaultController;
 import finco.framework.gui.IMainUI;
-import finco.framework.gui.component.TransactionDialog;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -35,11 +31,16 @@ public class BankController extends DefaultController {
         button.addActionListener(e -> addPersonalAccount());
         ui.addOperationalButton(button);
 
+        // Add Interest
+        JButton button3 = new JButton("Add Interest");
+        button3.addActionListener(e -> addInterest());
+        ui.addOperationalButton(button3);
+        
         // Add Company Account
-        JButton button2 = new JButton("Add Company Account");
+        JButton button2 = new JButton("Add Company1 Account");
         button2.addActionListener(e -> addCompanyAccount());
         ui.addOperationalButton(button2);
-
+        
     }
 
     protected void initTransactionalButtons() {
@@ -89,5 +90,19 @@ public class BankController extends DefaultController {
         model.addRow(rowdata);
 
         System.out.println("Add company account action performed");
+    }
+	
+	private void addInterest() {
+        AddInterestDialog dialog = new AddInterestDialog();
+        dialog.setBounds(450, 20, 300, 330);
+        dialog.setVisible(true);
+
+        if (dialog.getAddInterest() >0) {
+            finCo.doTransaction(new AddInterest(dialog.getAddInterest()));
+        }
+        
+
+        //refresh list
+        System.out.println("Add interest to all of accounts");
     }
 }

@@ -91,12 +91,12 @@ public class DefaultController {
                 finCo.doTransaction(new DepositEntry(dto.getAccountNumber(), dto.getAmount()));
 
             // update list
-            for(Vector<Object> o: model.getDataVector()) {
-                if (dto.getAccountNumber().equals((String)o.elementAt(0))) {
+            for(Object o: model.getDataVector()) {
+                if (dto.getAccountNumber().equals((String)((Vector<Object>)o).elementAt(0))) {
                     LocalDataObject db = LocalDataObject.getInstance();
                     for(Account a: db.getAllAccount())
                         if (a.getAccountNo().equals(dto.getAccountNumber())) {
-                            o.set(3, a.getBalance());
+                            ((Vector<Object>)o).set(3, a.getBalance());
                             break;
                         }
                     break;
@@ -124,12 +124,12 @@ public class DefaultController {
 
 
             // update list
-            for(Vector<Object> o: model.getDataVector()) {
-                if (dto.getAccountNumber().equals((String)o.elementAt(0))) {
+            for(Object o: model.getDataVector()) {
+                if (dto.getAccountNumber().equals((String)((Vector<Object>)o).elementAt(0))) {
                     LocalDataObject db = LocalDataObject.getInstance();
                     for(Account a: db.getAllAccount())
                         if (a.getAccountNo().equals(dto.getAccountNumber())) {
-                            o.set(3, a.getBalance());
+                            ((Vector<Object>)o).set(3, a.getBalance());
                             break;
                         }
                     break;

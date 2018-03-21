@@ -22,13 +22,16 @@ public class DepositEntry implements Transaction {
 	}
 	@Override
 	public void execute() {
+		//check
+		if(amount < 0) {
+			return ;
+		}
 		List<Account> accountlist = db.getAllAccount();
 		for (Account account : accountlist) {
 			if(accountNo.equals(account.getAccountNo())) {
 				//1.update balance
 				Calendar calender = Calendar.getInstance();
 		        Date date = calender.getTime();
-//				account.setAmount(account.getBalance()+amount);//???
 				
 				//2. add entry
 				Entry entry = new Entry(amount, date, "DEPOSIT");

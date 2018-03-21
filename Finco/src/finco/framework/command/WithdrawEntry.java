@@ -30,10 +30,13 @@ public class WithdrawEntry implements Transaction {
 		List<Account> accountlist = db.getAllAccount();
 		for (Account account : accountlist) {
 			if(accountNo.equals(account.getAccountNo())) {
+				//0.check
+				if(account.getBalance() - amount < 0) {
+					break;
+				}
 				//1.update balance
 				Calendar calender = Calendar.getInstance();
 		        Date date = calender.getTime();
-//				account.setAmount(account.getBalance()-amount);
 				
 				//2. add entry
 				Entry entry = new Entry(-amount, date, "WITHDRAW");
