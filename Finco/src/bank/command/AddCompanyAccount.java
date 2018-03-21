@@ -40,10 +40,8 @@ public class AddCompanyAccount implements Operation {
         account = createAccount();
         customer.addAccount(account);
 
-        //add an account
-        db.getAllCustomer().add(customer);
-        //add a customer
-        db.getAllAccount().add(account);
+        db.addCustomer(customer);
+        db.addAccount(account);
     }
 
     private Account createAccount() {

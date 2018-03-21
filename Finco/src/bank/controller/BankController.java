@@ -89,8 +89,8 @@ public class BankController extends DefaultController {
             finCo.doTransaction(new AddInterest(dialog.getAddInterest()));
         }
         
-
-        //refresh list
+        refreshList();
+        
         System.out.println("Add interest to all of accounts");
     }
 }
