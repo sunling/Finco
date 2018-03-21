@@ -23,6 +23,14 @@ public class AddAccount implements Operation {
 	}
 	@Override
 	public void execute() {
+
+        // check existing account
+        for(Account acc: db.getAllAccount()) {
+            if (acc.getAccountNo().equals(customerAccount.getAccountNo()))
+                // account number duplicate
+                return;
+        }
+
 	    customer = CustomerFactory.getInstance("PERSON");
 
 	    // customerAccount to customer

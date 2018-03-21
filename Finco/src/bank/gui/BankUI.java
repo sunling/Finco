@@ -23,6 +23,8 @@ public class BankUI extends BaseUI {
         model.addColumn("AccountNr");
         model.addColumn("Name");
         model.addColumn("City");
+        model.addColumn("P/C");
+        model.addColumn("Ch/S");
         model.addColumn("Amount");
 
     }

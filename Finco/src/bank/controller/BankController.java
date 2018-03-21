@@ -10,9 +10,13 @@ import bank.gui.component.AddPersonalAccountDialog;
 import bank.model.CompanyAccount;
 import bank.model.PersonalAccount;
 import finco.framework.IFinCo;
+import finco.framework.account.Account;
 import finco.framework.command.AddInterest;
 import finco.framework.mvc.controller.DefaultController;
 import finco.framework.mvc.view.IMainUI;
+import finco.framework.singleton.LocalDataObject;
+
+import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
@@ -82,5 +86,34 @@ public class BankController extends DefaultController {
 		finCo.doTransaction(new AddInterest());
         refreshList();
         System.out.println("Add interest to all of accounts");
+    }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    protected void refreshList() {
+        LocalDataObject db = LocalDataObject.getInstance();
+        for (Account acc : db.getAllAccount()) {
+            boolean found = false;
+            for(Object obj: model.getDataVector()) {
+                Vector vec = (Vector)obj;
+                if (vec.elementAt(0).equals(acc.getAccountNo())) {
+                    found = true;
+                    vec.set(1, acc.getCustomer().getName());
+                    vec.set(2, acc.getCustomer().getCity());
+                    vec.set(5, acc.getBalance());
+                }
+            }
+            if (!found) {
+                // add data to table
+                Object[] rowdata = new Object[6];
+                rowdata[0] = acc.getAccountNo();
+                rowdata[1] = acc.getCustomer().getName();
+                rowdata[2] = acc.getCustomer().getCity();
+                rowdata[3] = acc.getCustomer().getCustomerType();
+                rowdata[4] = acc.getAccountType();
+                rowdata[5] = acc.getBalance();
+                model.addRow(rowdata);
+            }
+        }
+        ui.getFrame().repaint();
     }
 }
