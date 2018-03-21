@@ -12,6 +12,7 @@ import bank.model.PersonalAccountDTO;
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
 import finco.framework.command.AddInterest;
+import finco.framework.factory.TransactionCommandFactory;
 import finco.framework.mvc.controller.DefaultController;
 import finco.framework.mvc.view.IMainUI;
 import finco.framework.singleton.LocalDataObject;
@@ -88,7 +89,7 @@ public class BankController extends DefaultController {
     }
 	
 	private void addInterest() {
-		finCo.doTransaction(new AddInterest());
+        finCo.doTransaction(TransactionCommandFactory.getInstance("ADD INTEREST", null, 0));
         refreshList();
         System.out.println("Add interest to all of accounts");
     }
