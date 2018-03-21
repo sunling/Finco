@@ -24,14 +24,14 @@ public class MonthlyReport implements Functor<Account, String>{
 		// TODO Auto-generated method stub
 		String newRecord = System.lineSeparator();
 		
-		report.append("Account : " + account.getAccountNo() + "\t\t Balance : " + account.getBalance());
+		report.append("Account : " + account.getAccountNo() + "\t Balance : " + account.getBalance());
 		report.append(newRecord);
-		report.append("Transaction Type" + "\t\t Ammount" + "\t\t Date");
+		report.append("Transaction Type" + "\t Ammount" + "\t Date");
 		report.append(newRecord);
 		for(CustomerLog logEntry : log) {
 			
 			if(logEntry.getAccount_No() == account.getAccountNo()) {
-				report.append(logEntry.getTransaction_Type() + "\t\t" + logEntry.getAmount() + "\t\t" + logEntry.getDate());
+				report.append(logEntry.getTransaction_Type() + "\t" + logEntry.getAmount() + "\t" + logEntry.getDate());
 				report.append(newRecord);
 			}
 			
