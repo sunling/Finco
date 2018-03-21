@@ -3,7 +3,6 @@ package bank.controller;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
-import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
 import bank.gui.component.AddPersonalAccountDialog;
@@ -11,6 +10,7 @@ import bank.model.CompanyAccountDTO;
 import bank.model.PersonalAccountDTO;
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
+import finco.framework.command.AddAccount;
 import finco.framework.command.AddInterest;
 import finco.framework.factory.TransactionCommandFactory;
 import finco.framework.mvc.controller.DefaultController;
@@ -82,12 +82,14 @@ public class BankController extends DefaultController {
 		dialog.setVisible(true);
 
 		if (dto.isValid()) {
-			finCo.doOperation(new AddCompanyAccount(dto));
-		}
+            finCo.doOperation(new AddAccount(dto));
+            System.out.println("Add account action performed in default controller");
+        }
+        else {
+        		System.out.println("Name, Account number and Email address are mandatory!");
+        }
 
 		refreshList();
-
-		System.out.println("Add company account action performed");
 	}
 
 	private void addInterest() {
