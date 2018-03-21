@@ -1,5 +1,8 @@
 package finco.framework.party;
 
+import finco.framework.account.Account;
+import finco.framework.account.Entry;
+
 /**
 * @author: Sumit Wankhede
 */
@@ -23,10 +26,10 @@ public class Company extends ACustomer implements ICustomer{
         this.no_Of_Employees = no_Of_Employees;
     }
     
-//	@Override
-//	public void sendAlert(Entry entry, Account account) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void sendAlert(Entry entry, Account account) {
+		// TODO Auto-generated method stub
+		System.out.println("Email notification sent to: " + this.getEmail());
+	}
 
 }

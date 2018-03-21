@@ -24,8 +24,6 @@ public abstract class ACustomer implements ICustomer{
 //        this.accounts = new ArrayList<>();
 //    }
 	
-
-//    public void sendAlert(Entry entry, Account account);
     
     @Override
     public List<IAccount> getAccounts() {

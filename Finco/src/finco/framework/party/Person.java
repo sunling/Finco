@@ -2,6 +2,9 @@ package finco.framework.party;
 
 import java.util.Date;
 
+import finco.framework.account.Account;
+import finco.framework.account.Entry;
+
 /**
 * @author: Sumit Wankhede
 */
@@ -25,9 +28,11 @@ public class Person extends ACustomer implements IPerson{
 		return customerType;
 	}
 
-//	@Override
-//	public void sendAlert(Entry entry, Account account) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void sendAlert(Entry entry, Account account) {
+		// TODO Auto-generated method stub
+		System.out.println("Email notification sent to: " + this.getEmail());
+	}
+
+	
 }
