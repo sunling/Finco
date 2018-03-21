@@ -6,10 +6,9 @@ import javax.swing.table.DefaultTableModel;
 import bank.command.AddCompanyAccount;
 import bank.command.AddPersonalAccount;
 import bank.gui.component.AddCompanyAccountDialog;
-import bank.gui.component.AddInterestDialog;
 import bank.gui.component.AddPersonalAccountDialog;
-import bank.model.CompanyAccount;
-import bank.model.PersonalAccount;
+import bank.model.CompanyAccountDTO;
+import bank.model.PersonalAccountDTO;
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
 import finco.framework.command.AddInterest;
@@ -53,7 +52,7 @@ public class BankController extends DefaultController {
     
     private void addPersonalAccount() {
 
-        PersonalAccount dto = new PersonalAccount();
+        PersonalAccountDTO dto = new PersonalAccountDTO();
         AddPersonalAccountDialog dialog = new AddPersonalAccountDialog(dto);
         dialog.setBounds(450, 20, 300, 330);
         dialog.setVisible(true);
@@ -69,7 +68,7 @@ public class BankController extends DefaultController {
 
 	private void addCompanyAccount() {
 
-        CompanyAccount dto = new CompanyAccount();
+        CompanyAccountDTO dto = new CompanyAccountDTO();
         AddCompanyAccountDialog dialog = new AddCompanyAccountDialog(dto);
         dialog.setBounds(450, 20, 300, 330);
         dialog.setVisible(true);

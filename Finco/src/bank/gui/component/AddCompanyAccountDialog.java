@@ -1,6 +1,6 @@
 package bank.gui.component;
 
-import bank.model.CompanyAccount;
+import bank.model.CompanyAccountDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +11,9 @@ import java.awt.*;
 public class AddCompanyAccountDialog extends JDialog {
 
 
-    private CompanyAccount account;
+    private CompanyAccountDTO account;
 
-    public AddCompanyAccountDialog(CompanyAccount account)
+    public AddCompanyAccountDialog(CompanyAccountDTO account)
     {
         super();
         this.account=account;

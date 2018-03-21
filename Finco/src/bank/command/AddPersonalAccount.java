@@ -2,7 +2,7 @@ package bank.command;
 
 import bank.account.Checkings;
 import bank.account.Savings;
-import bank.model.PersonalAccount;
+import bank.model.PersonalAccountDTO;
 import finco.framework.account.Account;
 import finco.framework.command.Operation;
 import finco.framework.party.Person;
@@ -13,12 +13,12 @@ import java.util.Date;
 public class AddPersonalAccount implements Operation {
     private LocalDataObject db =LocalDataObject.getInstance();
 
-    private PersonalAccount personalAccount;
+    private PersonalAccountDTO personalAccountDTO;
     private Person customer ;
     protected Account account;
 
-    public AddPersonalAccount(PersonalAccount personalAccount) {
-        this.personalAccount = personalAccount;
+    public AddPersonalAccount(PersonalAccountDTO personalAccountDTO) {
+        this.personalAccountDTO = personalAccountDTO;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class AddPersonalAccount implements Operation {
 
         // check existing account
         for(Account acc: db.getAllAccount()) {
-            if (acc.getAccountNo().equals(personalAccount.getAccountNo()))
+            if (acc.getAccountNo().equals(personalAccountDTO.getAccountNo()))
                 // account number duplicate
                 return;
         }
@@ -35,12 +35,12 @@ public class AddPersonalAccount implements Operation {
         customer = new Person();
 
         // customerAccount to customer
-        customer.setName(personalAccount.getCustomerName());
-        customer.setEmail(personalAccount.getEmail());
-        customer.setStreet(personalAccount.getStreet());
-        customer.setCity(personalAccount.getCity());
-        customer.setState(personalAccount.getState());
-        customer.setZip(personalAccount.getZip());
+        customer.setName(personalAccountDTO.getCustomerName());
+        customer.setEmail(personalAccountDTO.getEmail());
+        customer.setStreet(personalAccountDTO.getStreet());
+        customer.setCity(personalAccountDTO.getCity());
+        customer.setState(personalAccountDTO.getState());
+        customer.setZip(personalAccountDTO.getZip());
         Date bday = new Date();
         // TODO: convert string date to Date object
         customer.setDateOfBirth(bday);
@@ -53,10 +53,10 @@ public class AddPersonalAccount implements Operation {
     }
 
     private Account createAccount() {
-        if ("Savings".equals(personalAccount.getAccountType())) {
-            return new Savings(personalAccount.getAccountNo(), customer);
+        if ("Savings".equals(personalAccountDTO.getAccountType())) {
+            return new Savings(personalAccountDTO.getAccountNo(), customer);
         } else {
-            return new Checkings(personalAccount.getAccountNo(), customer);
+            return new Checkings(personalAccountDTO.getAccountNo(), customer);
         }
     }
 }

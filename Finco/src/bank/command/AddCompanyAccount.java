@@ -2,7 +2,7 @@ package bank.command;
 
 import bank.account.Checkings;
 import bank.account.Savings;
-import bank.model.CompanyAccount;
+import bank.model.CompanyAccountDTO;
 import finco.framework.account.Account;
 import finco.framework.command.Operation;
 import finco.framework.party.Company;
@@ -11,11 +11,11 @@ import finco.framework.singleton.LocalDataObject;
 public class AddCompanyAccount implements Operation {
     private LocalDataObject db =LocalDataObject.getInstance();
 
-    private CompanyAccount accountDTO;
+    private CompanyAccountDTO accountDTO;
     private Company customer ;
     protected Account account;
 
-    public AddCompanyAccount(CompanyAccount personalAccount) {
+    public AddCompanyAccount(CompanyAccountDTO personalAccount) {
         this.accountDTO = personalAccount;
     }
 
