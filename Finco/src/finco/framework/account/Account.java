@@ -27,7 +27,10 @@ public abstract class Account implements IAccount {
 	@Override
 	public void addEntry(Entry entry) {
         this.entryList.add(entry);
-        balance += entry.getAmount();
+        
+        DecimalFormat fmt = new DecimalFormat("##0.00");
+        balance =Double.valueOf(fmt.format(balance+entry.getAmount())) ;
+        
         notifyCustomer(entry, this);
 	}
 
@@ -36,10 +39,8 @@ public abstract class Account implements IAccount {
 	
 
 	@Override
-	public void addInterest() {
-		DecimalFormat fmt = new DecimalFormat("##0.00");
-		double interest = balance * this.getInterestRate();
-        balance = Double.valueOf(fmt.format(balance + interest));
+	public double getInterest() {
+		return balance * this.getInterestRate();
 	}	
 
 	@Override
