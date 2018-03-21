@@ -17,7 +17,6 @@ public abstract class Account implements IAccount {
     private String account_No;
     private double balance;
     private List<Entry> entryList;
- // private String exp_Date; 
     
     public Account(String accountNo, ACustomer customer) {
         this.account_No = accountNo;
@@ -73,4 +72,5 @@ public abstract class Account implements IAccount {
 		// TODO Auto-generated method stub
 		this.getCustomer().sendAlert(entry, account);
 	}
+
 }

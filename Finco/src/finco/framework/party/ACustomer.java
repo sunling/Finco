@@ -102,6 +102,5 @@ public abstract class ACustomer implements ICustomer{
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
     
 }

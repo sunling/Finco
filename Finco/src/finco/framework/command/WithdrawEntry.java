@@ -42,7 +42,7 @@ public class WithdrawEntry implements Transaction {
 				//2. add entry
 				Entry entry = new Entry(-amount, date, "WITHDRAW");
 				account.addEntry(entry);
-				
+								
 				//3.add log
 				CustomerLog log = new CustomerLog(account,entry);
 				db.addLog(log);

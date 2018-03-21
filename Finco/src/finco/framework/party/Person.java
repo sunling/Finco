@@ -31,7 +31,8 @@ public class Person extends ACustomer implements IPerson{
 	@Override
 	public void sendAlert(Entry entry, Account account) {
 		// TODO Auto-generated method stub
-		System.out.println("Email notification sent to: " + this.getEmail());
+		if(entry.getAmount() >= 500.00)
+			System.out.println("Email notification sent to: " + this.getEmail());
 	}
 
 	
