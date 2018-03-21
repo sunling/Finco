@@ -22,9 +22,7 @@ public class AddInterest implements Transaction {
 	public void execute() {
 		List<Account> accountList = db.getAllAccount();
 		for (Account account : accountList) {
-			
 			double interest = account.getInterest();
-			
 			Calendar calender = Calendar.getInstance();
 	        Date date = calender.getTime();
 	        

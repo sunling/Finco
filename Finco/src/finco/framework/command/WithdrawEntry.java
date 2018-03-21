@@ -2,10 +2,9 @@ package finco.framework.command;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import finco.framework.account.Account;
 import finco.framework.account.Entry;
+import finco.framework.account.IAccount;
 import finco.framework.singleton.CustomerLog;
 import finco.framework.singleton.LocalDataObject;
 
@@ -27,30 +26,23 @@ public class WithdrawEntry implements Transaction {
 	}
 	@Override
 	public void execute() {
-		List<Account> accountlist = db.getAllAccount();
-		for (Account account : accountlist) {
-			if(accountNo.equals(account.getAccountNo())) {
-				//0.check
-				if(account.getBalance() - amount < 0) {
-					System.out.println("Balance is insufficient");
-					break;
-				}
-				//1.update balance
-				Calendar calender = Calendar.getInstance();
-		        Date date = calender.getTime();
-				
-				//2. add entry
-				Entry entry = new Entry(-amount, date, "WITHDRAW");
-				account.addEntry(entry);
-				
-				//3.add log
-				CustomerLog log = new CustomerLog(account,entry);
-				db.addLog(log);
-				break;
-			}else {
-				//not found
-			}
+		//0. get account
+		IAccount account = db.getAccount(accountNo);
+		
+		//1.check
+		if(account.getBalance() - amount < 0) {
+			System.out.println("Balance is insufficient");
+			return;
 		}
+		//2. add entry
+		Calendar calender = Calendar.getInstance();
+        Date date = calender.getTime();
+		Entry entry = new Entry(-amount, date, "WITHDRAW");
+		account.addEntry(entry);
+		
+		//3.add log
+		CustomerLog log = new CustomerLog(account,entry);
+		db.addLog(log);
 	}
 
 }

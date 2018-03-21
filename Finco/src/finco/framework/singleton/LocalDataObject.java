@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import finco.framework.account.Account;
+import finco.framework.account.IAccount;
 import finco.framework.party.ICustomer;
 
 /**
@@ -63,5 +64,15 @@ public class LocalDataObject {
     public ArrayList<CustomerLog> getLog(){
     		return customerLogList;
     }
+
+	public IAccount getAccount(String accountNo) {
+		List<Account> allAccounts = this.getAllAccount();
+		for (Account account : allAccounts) {
+			if(account.getAccountNo().equals(accountNo)) {
+				return account;
+			}
+		}
+		return null;
+	}
     
 }

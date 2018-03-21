@@ -1,5 +1,7 @@
 package bank.controller;
 
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,13 +13,10 @@ import bank.model.CompanyAccountDTO;
 import bank.model.PersonalAccountDTO;
 import finco.framework.IFinCo;
 import finco.framework.account.Account;
-import finco.framework.command.AddInterest;
 import finco.framework.factory.TransactionCommandFactory;
 import finco.framework.mvc.controller.DefaultController;
 import finco.framework.mvc.view.IMainUI;
 import finco.framework.singleton.LocalDataObject;
-
-import java.util.Vector;
 
 /**
  * @author: Enkhbayasgalan Galsandorj
