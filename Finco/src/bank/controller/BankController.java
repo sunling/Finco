@@ -125,9 +125,5 @@ public class BankController extends DefaultController {
 			}
 		}
 		ui.getFrame().repaint();
-
-        finCo.doTransaction(TransactionCommandFactory.getInstance("ADD INTEREST", null, 0));
-        refreshList();
-        System.out.println("Add interest to all of accounts");
     }
 }

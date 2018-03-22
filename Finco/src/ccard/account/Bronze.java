@@ -1,10 +1,8 @@
 package ccard.account;
 
-import finco.framework.account.Account;
-import finco.framework.account.IAccount;
 import finco.framework.party.ACustomer;
 
-public class Bronze extends Account implements IAccount {
+public class Bronze extends CCAccount {
 
 	private final static double interestRate = 0.02;
 	public final static double monthlyIntRate = 0.1;

@@ -19,15 +19,15 @@ import finco.framework.proxy.ProxyFunctor;
 public class Bank {
     public static void main(String[] args) {
 
-    		IFinCo finCo = new FinCo();
-    		ProxyFunctor<Operation> operationFunc = new EmptyProxyFunc<Operation>();
-    		ProxyFunctor<Transaction> transactionFunctor = new EmptyProxyFunc<Transaction>();
-        IFinCo proxy = new ProxyFinCo(finCo,operationFunc,transactionFunctor);
+        IFinCo finCo = new FinCo();
+        ProxyFunctor<Operation> operationFunc = new EmptyProxyFunc<Operation>();
+        ProxyFunctor<Transaction> transactionFunctor = new EmptyProxyFunc<Transaction>();
+        finCo = new ProxyFinCo(finCo,operationFunc,transactionFunctor);
         
         DefaultTableModel model = new DefaultTableModel();
         IMainUI ui = new BankUI(model);
 
-        new BankController(proxy, ui, model);
+        new BankController(finCo, ui, model);
 
         ui.initialize();
     }
